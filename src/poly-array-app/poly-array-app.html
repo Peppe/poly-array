@@ -1,0 +1,47 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="poly-array-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+    <template is="dom-repeat" items="{{users}}">
+      <div>
+        <span>{{item.first}}</span>
+        <span>{{item.last}}</span>
+      </div>
+    </template>
+    <input value="{{firstName::input}}">
+    <input value="{{lastName::input}}">
+    <button on-tap="addItem">click me to add item</button>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'poly-array-app',
+
+      properties: {
+        firstName: String,
+        lastName: String,
+        prop1: {
+          type: String,
+          value: 'poly-array-app',
+        },
+        users: {
+          type: Array,
+          value: function(){
+            return [];
+          }
+        }
+      },
+      addItem: function() {
+         this.push('users', {first: this.firstName, last:this.lastName});
+      },
+
+    });
+  </script>
+</dom-module>
